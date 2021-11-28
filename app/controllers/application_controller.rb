@@ -3,6 +3,7 @@ class ApplicationController < ActionController::API
   include ActionController::Cookies
 
   def token
-    cookies.signed[:jwt]
+    # cookies.signed[:jwt]
+    session[:jwt]
   end
 end
