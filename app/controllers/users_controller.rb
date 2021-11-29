@@ -5,7 +5,6 @@ class UsersController < ApplicationController
   # GET /users
   def index
     @users = User.all
-    puts 'I am hit'
     render json: @users
   end
 
@@ -14,11 +13,17 @@ class UsersController < ApplicationController
     render json: @user
   end
 
+  def logged_in?
+    render json: current_user, status: :ok
+  end
+
   # POST /users
   def create
     @user = User.new(user_params)
 
     if @user.save
+      auth_token = Knock::AuthToken.new(payload: { sub: @user.id })
+      session[:jwt] = auth_token.token
       render json: @user, status: :created
     else
       render json: @user.errors, status: :unprocessable_entity
