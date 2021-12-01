@@ -3,7 +3,7 @@ class AppointmentsController < ApplicationController
 
   # GET /appointments
   def index
-    @appointments = User.first.appointments
+    @appointments = Appointment.all(joins: %i[teacher user])
     render json: @appointments
   end
 
