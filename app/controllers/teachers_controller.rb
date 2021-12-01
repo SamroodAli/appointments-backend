@@ -1,4 +1,5 @@
 class TeachersController < ApplicationController
+  before_action :authenticate_user, only: %i[show]
   before_action :set_teacher, only: %i[show update destroy]
 
   # GET /teachers
