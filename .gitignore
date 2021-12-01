@@ -7,6 +7,7 @@
 # Ignore bundler config.
 /.bundle
 node_modules
+public
 
 # Ignore all logfiles and tempfiles.
 /log/*
