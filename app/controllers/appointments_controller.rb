@@ -3,8 +3,7 @@ class AppointmentsController < ApplicationController
 
   # GET /appointments
   def index
-    @appointments = Appointment.all
-
+    @appointments = User.first.appointments
     render json: @appointments
   end
 
@@ -16,7 +15,7 @@ class AppointmentsController < ApplicationController
   # POST /appointments
   def create
     teacher_id = appointment_params[:teacher_id]
-    @appointment = Appointment.new({ teacher_id: teacher_id, user_id: 1 })
+    @appointment = Appointment.new({ teacher_id: teacher_id, user_id: User.first.id })
 
     if @appointment.save
       render json: @appointment, status: :created, location: @appointment
