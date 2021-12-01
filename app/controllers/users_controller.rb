@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user, except: [:create]
+  # before_action :authenticate_user, except: %i[create signout]
   before_action :set_user, only: %i[show update destroy]
 
   # GET /users
@@ -42,6 +42,11 @@ class UsersController < ApplicationController
   # DELETE /users/1
   def destroy
     @user.destroy
+  end
+
+  def signout
+    session[:jwt] = nil
+    render json: { message: 'Signed out successfully' }, status: :ok
   end
 
   private

@@ -4,9 +4,4 @@ class UserTokenController < Knock::AuthTokenController
     session[:jwt] = auth_token.token # save it into session the token generated
     render json: { username: User.find(auth_token.payload[:sub]).username }, status: :created
   end
-
-  def delete
-    session[:jwt] = nil
-    render json: { message: 'Signed out successfully' }, status: :success
-  end
 end
