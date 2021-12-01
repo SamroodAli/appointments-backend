@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :appointments
+  resources :teachers
     get "/users",to:"users#index"
     
     scope :auth do
