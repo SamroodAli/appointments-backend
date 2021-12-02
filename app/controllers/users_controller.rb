@@ -14,7 +14,11 @@ class UsersController < ApplicationController
   end
 
   def logged_in?
-    render json: current_user, status: :ok
+    if current_user
+      render json: { current_user: current_user }, status: :ok
+    else
+      render json: { current_user: nil }, status: 401
+    end
   end
 
   # POST /users
