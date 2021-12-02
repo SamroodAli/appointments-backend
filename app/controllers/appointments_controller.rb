@@ -17,7 +17,8 @@ class AppointmentsController < ApplicationController
   def create
     teacher_id = appointment_params[:teacher_id]
     date = DateTime.parse(appointment_params[:date])
-    @appointment = Appointment.new({ teacher_id: teacher_id, user_id: current_user.id ,date: date})
+    time = appointment_params[:time]
+    @appointment = Appointment.new({ teacher_id: teacher_id, user_id: current_user.id ,date: date,time: time})
 
     if @appointment.save
       render json: @appointment, status: :created, location: @appointment
