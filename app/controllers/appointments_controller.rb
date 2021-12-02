@@ -16,7 +16,8 @@ class AppointmentsController < ApplicationController
   # POST /appointments
   def create
     teacher_id = appointment_params[:teacher_id]
-    @appointment = Appointment.new({ teacher_id: teacher_id, user_id: current_user.id })
+    date = DateTime.parse(appointment_params[:date])
+    @appointment = Appointment.new({ teacher_id: teacher_id, user_id: current_user.id ,date: date})
 
     if @appointment.save
       render json: @appointment, status: :created, location: @appointment
@@ -48,6 +49,6 @@ class AppointmentsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def appointment_params
-    params.require(:appointment).permit(:teacher_id)
+    params.require(:appointment).permit(:teacher_id,:date,:time)
   end
 end
