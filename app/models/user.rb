@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   include ActiveModel::Serializers::JSON
+
   has_many :appointments
   has_many :users, through: :appointments
 
@@ -13,7 +14,7 @@ class User < ApplicationRecord
   def attributes
     {
       id:nil,
-      username:nil
+      username:nil,
       email:nil
     }
   end

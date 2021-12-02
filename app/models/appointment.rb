@@ -6,11 +6,10 @@ class Appointment < ApplicationRecord
 
   def attributes
     {
-      'date' => date,
-      'time' => time,
-      'teacher' => {
-        'name' => teacher.name
-      },
+      id: id,
+      date:date,
+      time:time,
+      teacher:teacher,
     }
   end
 end
