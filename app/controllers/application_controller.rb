@@ -6,4 +6,5 @@ class ApplicationController < ActionController::API
     # cookies.signed[:jwt]
     session[:jwt]
   end
+
 end

@@ -4,8 +4,17 @@ class AppointmentsController < ApplicationController
 
   # GET /appointments
   def index
+    # all current user's appointments for future dates
     @appointments = current_user.appointments
-    render json: @appointments
+    @upcoming_appointments =@appointments.where('date > ?', Date.today)
+    @past_appointments = @appointments.where('date < ?', Date.today)
+    @todays_appoitments = @appointments.where('date = ?', Date.today)
+    render json: {
+      all: Appointment.first,
+      past:@past_appointments,
+      upcoming:@upcoming_appointments,
+      today: @todays_appoitments
+    }
   end
 
   # GET /appointments/1
