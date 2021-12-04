@@ -1,5 +1,5 @@
 class AppointmentsController < ApplicationController
-  before_action :authenticate_user, only: %i[index]
+  before_action :authenticate_user
   before_action :set_appointment, only: %i[show update destroy]
 
   # GET /appointments
@@ -10,10 +10,9 @@ class AppointmentsController < ApplicationController
     @past_appointments = @appointments.where('date < ?', Date.today)
     @todays_appoitments = @appointments.where('date = ?', Date.today)
     render json: {
-      all: @appointments,
-      past:@past_appointments,
+      today: @todays_appoitments,
       upcoming:@upcoming_appointments,
-      today: @todays_appoitments
+      past:@past_appointments,
     }
   end
 
