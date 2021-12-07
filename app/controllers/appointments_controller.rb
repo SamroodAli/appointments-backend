@@ -10,9 +10,9 @@ class AppointmentsController < ApplicationController
     @past_appointments = @appointments.where('date < ?', Date.today)
     @todays_appoitments = @appointments.where('date = ?', Date.today)
     render json: {
-      today: @todays_appoitments,
-      upcoming:@upcoming_appointments,
-      past:@past_appointments,
+      Today: @todays_appoitments,
+      Upcoming:@upcoming_appointments,
+      Past:@past_appointments,
     }
   end
 
