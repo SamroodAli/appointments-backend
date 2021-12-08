@@ -29,8 +29,8 @@ class AppointmentsController < ApplicationController
 
     if Appointment.find_by({teacher_id: teacher_id, date: date, time: time})
       return render json: {
-        errors: ['Appointment already exists']
-      }
+        errors: ['Appointment already exists.']
+      },status: 400
     end
     
     @appointment = Appointment.new({ teacher_id: teacher_id, user_id: current_user.id ,date: date,time: time})
