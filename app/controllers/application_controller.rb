@@ -7,11 +7,11 @@ class ApplicationController < ActionController::API
     session[:jwt]
   end
 
-  # def authenticate_user
-  # end
+  def authenticate_user
+  end
 
-  # def current_user 
-  #   User.first
-  # end
+  def current_user 
+    User.first
+  end
 
 end

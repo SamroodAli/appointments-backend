@@ -1,8 +1,8 @@
 class Appointment < ApplicationRecord
   include ActiveModel::Serializers::JSON
 
-  belongs_to :teacher,dependent: :destroy
-  belongs_to :user,dependent: :destroy
+  belongs_to :teacher
+  belongs_to :user
 
   def attributes
     {

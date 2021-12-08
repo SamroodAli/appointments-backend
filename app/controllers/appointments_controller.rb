@@ -26,6 +26,13 @@ class AppointmentsController < ApplicationController
     teacher_id = appointment_params[:teacher_id]
     date = DateTime.parse(appointment_params[:date])
     time = appointment_params[:time]
+
+    if Appointment.find_by({teacher_id: teacher_id, date: date, time: time})
+      return render json: {
+        errors: ['Appointment already exists']
+      }
+    end
+    
     @appointment = Appointment.new({ teacher_id: teacher_id, user_id: current_user.id ,date: date,time: time})
 
     if @appointment.save

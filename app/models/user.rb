@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   include ActiveModel::Serializers::JSON
 
-  has_many :appointments
+  has_many :appointments, dependent: :destroy
   has_many :users, through: :appointments
 
   has_secure_password
