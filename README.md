@@ -2,29 +2,32 @@
 
 Codezilla is a course catalogue website which presents a list of coding courses. You can watch them as well. Skill up with these courses for free. This is the companion app which lets you book appointments with the teachers at Codezilla.
 
-# Codezilla
+## Live Demo
+
+[heroku link](https://codezilla-appointments.herokuapp.com/)
+
+# Codezilla Companion App
 
 This is the companion app for codezilla which can be found here
-* Repo [Codezilla](https://github.com/SamroodAli/codezilla)
-* Live on [heroku](https://samrood-codezilla.herokuapp.com/)
+
+- Repo [Codezilla](https://github.com/SamroodAli/codezilla)
+- Live on [heroku](https://samrood-codezilla.herokuapp.com/)
 
 ## Built With
 
-- Ruby on rails
+- Ruby on
 - Knock JWT authentication gem
 
 # React Frontend Codebase
+
 The front lives in this [repo](https://github.com/SamroodAli/appointments-frontend)
 
 # Features
+
 - Ruby on rails API server.
 - no cors turned on for security since rails serve react frontend static files.
 - JWT tokens authentication with http only session cookies
 - Resources skaffolded out using Rails cli
-
-## Live Demo
-
-[heroku link](https://codezilla-appointments.herokuapp.com/)
 
 ## Getting Started
 
@@ -41,6 +44,7 @@ To get started with the app, first clone the repo and `cd` into the directory:
 $ git clone https://github.com/SamroodAli/appointments-backend.git
 $ cd appointments-backend
 ```
+
 Then install the needed packages (while skipping any Ruby gems needed only in production):
 
 ```
@@ -65,6 +69,7 @@ To run the project on rails local server:
 ```
 $ rails server
 ```
+
 ## Deploying
 
 you’ll need a Heroku account
@@ -97,6 +102,7 @@ $ git checkout <branch name>
 - LinkedIn: [LinkedIn](https://www.linkedin.com/in/samrood-ali/)
 
 # Attributions
+
 asmyshlyaev177/react-horizontal-scroll
 hero home section - Armando99Rdz - https://tailwindcomponents.com/u/armando99rdz
 
