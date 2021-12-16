@@ -5,7 +5,7 @@ class Appointment < ApplicationRecord
   belongs_to :user
   # validates date to be true and not in the past
   validates :date, presence: true, date: { after_or_equal_to: Date.today }
-  validates :time, presence: true, time: { after_or_equal_to: Time.now }
+  validates :time, presence: true
 
   def attributes
     {
