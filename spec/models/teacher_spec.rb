@@ -19,10 +19,4 @@ RSpec.describe Teacher do
       expect(Teacher).not_to be_valid
     end
   end
-
-  describe 'validity in fixtures' do
-    it 'should be vaid' do
-      expect(Teacher.all.to_a.all?(&:valid?)).to be_truthy
-    end
-  end
 end 
