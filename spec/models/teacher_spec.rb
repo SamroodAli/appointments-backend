@@ -20,9 +20,9 @@ RSpec.describe Teacher do
     end
   end
 
-  describe "association between teacher and appointments" do
-    it "should be present" do
+  describe 'association between teacher and appointments' do
+    it 'should be present' do
       expect(subject.appointments).to eq([Appointments(:AppointmentOne), Appointments(:AppointmentTwo)])
     end
   end
-end 
+end

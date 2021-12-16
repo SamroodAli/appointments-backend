@@ -13,10 +13,9 @@ class User < ApplicationRecord
 
   def attributes
     {
-      id:nil,
-      username:nil,
-      email:nil
+      id: nil,
+      username: nil,
+      email: nil
     }
   end
-
 end

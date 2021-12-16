@@ -6,13 +6,13 @@ class AppointmentsController < ApplicationController
   def index
     # all current user's appointments for future dates
     @appointments = current_user.appointments
-    @upcoming_appointments =@appointments.where('date > ?', Date.today)
+    @upcoming_appointments = @appointments.where('date > ?', Date.today)
     @past_appointments = @appointments.where('date < ?', Date.today)
     @todays_appoitments = @appointments.where('date = ?', Date.today)
     render json: {
       Today: @todays_appoitments,
-      Upcoming:@upcoming_appointments,
-      Past:@past_appointments,
+      Upcoming: @upcoming_appointments,
+      Past: @past_appointments
     }
   end
 
@@ -27,13 +27,13 @@ class AppointmentsController < ApplicationController
     date = DateTime.parse(appointment_params[:date])
     time = appointment_params[:time]
 
-    if Appointment.find_by({teacher_id: teacher_id, date: date, time: time})
+    if Appointment.find_by({ teacher_id: teacher_id, date: date, time: time })
       return render json: {
         errors: ['Appointment already exists.']
-      },status: 400
+      }, status: 400
     end
-    
-    @appointment = Appointment.new({ teacher_id: teacher_id, user_id: current_user.id ,date: date,time: time})
+
+    @appointment = Appointment.new({ teacher_id: teacher_id, user_id: current_user.id, date: date, time: time })
 
     if @appointment.save
       render json: @appointment, status: :created, location: @appointment
@@ -65,6 +65,6 @@ class AppointmentsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def appointment_params
-    params.require(:appointment).permit(:teacher_id,:date,:time)
+    params.require(:appointment).permit(:teacher_id, :date, :time)
   end
 end
