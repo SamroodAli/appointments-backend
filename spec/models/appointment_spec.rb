@@ -31,7 +31,7 @@ RSpec.describe Appointment do
 
   describe 'association between teacher and appointment' do
     it 'should be present' do
-      expect(subject.teacher).to eq(Teachers(:John))
+      expect(subject.teacher).to eq(Teachers(:TeacherOne))
     end
   end
 
