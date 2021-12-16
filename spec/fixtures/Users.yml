@@ -1,0 +1,37 @@
+Samrood:
+  username: Samrood
+  email: samrood@example.com
+  password_digest: <%= BCrypt::Password.create('testpassword', cost: 5) %>
+
+micheal:
+  username: Micheal
+  email: micheal@example.com
+  password_digest: <%= BCrypt::Password.create('testpassword', cost: 5) %>
+
+sanjeed:
+  username: Sanjeed
+  email: sanjeed@example.com
+  password_digest: <%= BCrypt::Password.create('testpassword', cost: 5) %>
+
+jean:
+  username: Jean
+  email: jean@example.com
+  password_digest: <%= BCrypt::Password.create('testpassword', cost: 5) %>
+
+lana:
+  username: Lana
+  email: lana@example.com
+  password_digest: <%= BCrypt::Password.create('testpassword', cost: 5) %>
+
+archer:
+  username: Archer
+  email: archer@example.com
+  password_digest: <%= BCrypt::Password.create('testpassword', cost: 5) %>
+
+
+<% 30.times do |n| %>
+user_<%= n %>:
+  username:  <%= "User #{n}" %>
+  email: <%= "user-#{n}@example.com" %>
+  password_digest: <%= BCrypt::Password.create('testpassword', cost: 5) %>
+<% end %>

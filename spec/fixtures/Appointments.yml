@@ -1,0 +1,13 @@
+AppointmentOne:
+  id: 1
+  teacher_id: 1
+  user: Samrood
+  date: <%= Date.tomorrow %>
+  time: 'UTC +1 13:00'
+
+AppointmentTwo:
+  id: 2
+  teacher_id: 2
+  user: Samrood
+  date: <%= Date.tomorrow %>
+  time: 'UTC +1 13:00'
