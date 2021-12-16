@@ -3,10 +3,11 @@ class Teacher < ApplicationRecord
 
   has_many :appointments, dependent: :destroy
   has_many :users, through: :appointments
+  validates :name, presence: true
 
   def attributes
     {
-      id:nil,
+      id: nil,
       name: nil
     }
   end
