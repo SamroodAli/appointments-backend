@@ -4,7 +4,6 @@ class AppointmentsController < ApplicationController
 
   # GET /appointments
   def index
-    # appointments includes teachers
     render json: Appointment.all_for(current_user.id)
   end
 
@@ -15,22 +14,12 @@ class AppointmentsController < ApplicationController
 
   # POST /appointments
   def create
-    teacher_id = appointment_params[:teacher_id]
-    date = DateTime.parse(appointment_params[:date])
-    time = appointment_params[:time]
+    @appointment = Appointment.new(appointment_params)
 
-    if Appointment.find_by({ teacher_id: teacher_id, date: date, time: time })
-      return render json: {
-        errors: ['Appointment already exists.']
-      }, status: 400
-    end
-
-    @appointment = Appointment.new({ teacher_id: teacher_id, user_id: current_user.id, date: date, time: time })
-
-    if @appointment.save
-      render json: @appointment, status: :created, location: @appointment
+    if !@appointment.reserved? && @appointment.save
+      render json: @appointment.reserved?, status: :created, location: @appointment
     else
-      render json: @appointment.errors, status: :unprocessable_entity
+      render json: { errors: ['Appointment already exists'] }, status: 400
     end
   end
 
@@ -55,8 +44,10 @@ class AppointmentsController < ApplicationController
     @appointment = Appointment.find(params[:id])
   end
 
-  # Only allow a list of trusted parameters through.
+  # Only allow a list of trusted parameters through
   def appointment_params
-    params.require(:appointment).permit(:teacher_id, :date, :time)
+    send_params = params.require(:appointment).permit(:teacher_id, :date, :time)
+    send_params[:date] = DateTime.parse(send_params[:date])
+    send_params
   end
 end

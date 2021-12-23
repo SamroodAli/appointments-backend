@@ -9,8 +9,6 @@ class Appointment < ApplicationRecord
   validates :date, presence: true, date: { after_or_equal_to: Date.today }
   validates :time, presence: true
 
-
-  # method that returns upcoming,past and today's appointments
   def self.all_for(user_id)
     upcoming = upcoming(user_id)
     past = past(user_id)
@@ -26,4 +24,8 @@ class Appointment < ApplicationRecord
     super(options.merge(include: :teacher))
   end
 
+  # method is_reserved appointment check if reserved with teacher_id ,user, date and time exists
+  def reserved?
+    !!Appointment.find_by({ teacher_id: teacher_id, date: date, time: time, user_id: user_id })
+  end
 end
