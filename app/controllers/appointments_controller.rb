@@ -48,6 +48,7 @@ class AppointmentsController < ApplicationController
   def appointment_params
     send_params = params.require(:appointment).permit(:teacher_id, :date, :time)
     send_params[:date] = DateTime.parse(send_params[:date])
+    send_params[:user_id] = current_user.id
     send_params
   end
 end

@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
   # before_action :authenticate_user, except: %i[create signout]
-  before_action :set_user, only: %i[show update destroy]
 
   # GET /users
   def index
@@ -41,15 +40,11 @@ class UsersController < ApplicationController
 
   # DELETE /users/1
   def destroy
-    @user.destroy
+    session[:jwt] = nil
+    render json: { current_user: nil }, status: :ok
   end
 
   private
-
-  # Use callbacks to share common setup or constraints between actions.
-  def set_user
-    @user = User.find(params[:id])
-  end
 
   # Only allow a list of trusted parameters through.
   def user_params
