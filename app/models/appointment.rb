@@ -1,5 +1,4 @@
 class Appointment < ApplicationRecord
-  include ActiveModel::Serializers::JSON
   scope :upcoming, ->(user_id) { where('date > ?', Date.today).where(user_id: user_id) }
   scope :past, ->(user_id) { where('date < ?', Date.today).where(user_id: user_id) }
   scope :todays_appointments, ->(user_id) { where('date = ?', Date.today).where(user_id: user_id) }
@@ -9,6 +8,7 @@ class Appointment < ApplicationRecord
   # validates date to be true and not in the past
   validates :date, presence: true, date: { after_or_equal_to: Date.today }
   validates :time, presence: true
+
 
   # method that returns upcoming,past and today's appointments
   def self.all_for(user_id)
@@ -22,12 +22,8 @@ class Appointment < ApplicationRecord
     }
   end
 
-  def attributes
-    {
-      id: id,
-      date: date,
-      time: time,
-      teacher: teacher
-    }
+  def as_json(options = {})
+    super(options.merge(include: :teacher))
   end
+
 end

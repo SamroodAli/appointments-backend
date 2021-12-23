@@ -4,6 +4,7 @@ class AppointmentsController < ApplicationController
 
   # GET /appointments
   def index
+    # appointments includes teachers
     render json: Appointment.all_for(current_user.id)
   end
 
