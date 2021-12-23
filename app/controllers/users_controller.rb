@@ -10,10 +10,6 @@ class UsersController < ApplicationController
 
   # GET /users/1
   def show
-    render json: @user
-  end
-
-  def logged_in?
     if current_user
       render json: { current_user: current_user.username }, status: :ok
     else
