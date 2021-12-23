@@ -10,7 +10,6 @@ Rails.application.routes.draw do
       post '/signup', to: 'users#create'
       get '/current_user',to: 'users#show'
 
-      delete '/signout',to:'users#signout'
     end
   end
   get "*react",to:"react#index"

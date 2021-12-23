@@ -44,11 +44,6 @@ class UsersController < ApplicationController
     @user.destroy
   end
 
-  def signout
-    session[:jwt] = nil
-    render json: { message: 'Signed out successfully' }, status: :ok
-  end
-
   private
 
   # Use callbacks to share common setup or constraints between actions.
