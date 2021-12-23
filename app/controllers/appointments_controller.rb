@@ -4,7 +4,15 @@ class AppointmentsController < ApplicationController
 
   # GET /appointments
   def index
-    render json: Appointment.all_for(current_user.id)
+    upcoming = Appointment.upcoming(current_user.id).as_json(include: :teacher)
+    past = Appointment.past(current_user.id).as_json(include: :teacher)
+    today = Appointment.todays_appointments(current_user.id).as_json(include: :teacher)
+
+    render json: {
+      Today: today,
+      Upcoming: upcoming,
+      Past: past
+    }
   end
 
   # GET /appointments/1

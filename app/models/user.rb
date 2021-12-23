@@ -1,6 +1,4 @@
 class User < ApplicationRecord
-  include ActiveModel::Serializers::JSON
-
   has_many :appointments, dependent: :destroy
   has_many :users, through: :appointments
 
@@ -10,12 +8,4 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true, format: { with: VALID_EMAIL_REGEX }
   has_many :appointments
   has_many :teachers, through: :appointments
-
-  def attributes
-    {
-      id: nil,
-      username: nil,
-      email: nil
-    }
-  end
 end

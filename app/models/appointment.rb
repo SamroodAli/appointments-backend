@@ -5,26 +5,9 @@ class Appointment < ApplicationRecord
 
   belongs_to :teacher
   belongs_to :user
-  # validates date to be true and not in the past
   validates :date, presence: true, date: { after_or_equal_to: Date.today }
   validates :time, presence: true
 
-  def self.all_for(user_id)
-    upcoming = upcoming(user_id)
-    past = past(user_id)
-    today = todays_appointments(user_id)
-    {
-      Today: today,
-      Upcoming: upcoming,
-      Past: past
-    }
-  end
-
-  def as_json(options = {})
-    super(options.merge(include: :teacher))
-  end
-
-  # method is_reserved appointment check if reserved with teacher_id ,user, date and time exists
   def reserved?
     !!Appointment.find_by({ teacher_id: teacher_id, date: date, time: time, user_id: user_id })
   end
