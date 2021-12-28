@@ -82,5 +82,5 @@ test:
 production:
   <<: *default
   database: appointments_backend_production
-  username: appointments_backend
+  username: <%= ENV['POSTGRES_USER'] %>
   password: <%= ENV['APPOINTMENTS_BACKEND_DATABASE_PASSWORD'] %>

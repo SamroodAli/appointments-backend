@@ -5,3 +5,22 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+# list of fake names
+names = %w(
+  John
+  Jane
+  Mike
+  Sarah
+  Mary
+  Mark
+  Anna
+  Tom
+  Kate
+  Alex
+  Jack
+)
+
+names.each do |name|
+  Teacher.create(name: name)
+end
